@@ -10,3 +10,8 @@ the code is a messy state machine based on douglas crockford's
 [json_parse_state](https://github.com/douglascrockford/JSON-js/blob/master/json_parse_state.js)
 
 thanks everybody
+
+## todo
+* clean up this code
+* support `<binary>` syntax
+* support comments
