@@ -1,4 +1,3 @@
-// states.js
 const go = 'gogogo'
 const good = 'good'
 const equals = 'equals'
@@ -22,12 +21,11 @@ const escapes = {
 }
 
 const escape = string =>
-  string.replace(/\\([\"])/g, (_, character) => escapes[character])
+  string.replace(/\\([\\"])/g, (_, character) => escapes[character])
 
 // TODO add support for binary data
 const tokens = /^\s*(?:([,;=(){}])|"((?:\\"|[^"])*)")/
 
-// string.js
 const stringAction = {
   [go] () {
     state = good
