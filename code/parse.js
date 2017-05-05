@@ -22,10 +22,10 @@ const escapes = {
 }
 
 const escape = string =>
-  string.replace(/\\(.)/g, (_, character) => escapes[character])
+  string.replace(/\\([\"])/g, (_, character) => escapes[character])
 
 // TODO add support for binary data
-const tokens = /^\s*(?:([,;=(){}])|"((?:[^\\"]|\\["\\])*)")/
+const tokens = /^\s*(?:([,;=(){}])|"((?:\\"|[^"])*)")/
 
 // string.js
 const stringAction = {
@@ -99,6 +99,14 @@ const action = {
       container = last.container
       key = last.key
       state = last.state
+    },
+    // trailing ; in dictionary definitions
+    [dictKey] () {
+      const last = stack.pop()
+      value = container
+      container = last.container
+      key = last.key
+      state = last.state
     }
   },
   '(': {
@@ -113,18 +121,24 @@ const action = {
         key,
         state: dictSeparator
       })
+      container = []
+      state = firstArrayValue
     },
     [firstArrayValue] () {
       stack.push({
         container,
         state: arraySeparator
       })
+      container = []
+      state = firstArrayValue
     },
     [arrayValue] () {
       stack.push({
         container,
         state: arraySeparator
       })
+      container = []
+      state = firstArrayValue
     }
   },
   ')': {
