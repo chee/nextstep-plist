@@ -29,4 +29,4 @@ stringify(js) // '{ "~f" = "moveWordForward:"; "~b": "moveWordBackward":}'
 * support comments
 * make the output prettier
 * write tests for stringify
-* tell @gnarf
+* ~tell @gnarf~
