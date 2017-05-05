@@ -11,6 +11,16 @@ the code is a messy state machine based on douglas crockford's
 
 thanks everybody
 
+## using
+```js
+const plist = `{
+  "~f" = "moveWordForward:",
+  "~b" = "moveWordBackward:"
+}`
+const {parse} = require('nextstep-plist')
+parse(plist) // {'~f': 'moveWordForward:', '~b': 'moveWordBackward:'}
+```
+
 ## todo
 * clean up this code
 * support `<binary>` syntax
