@@ -50,3 +50,17 @@ test('it can parse a string with escapes', t => {
   const string = parse(plist)[0]
   t.equal(string, 'she said "not me!"')
 })
+
+test('it can parse nested arrays', t => {
+  t.plan(1)
+  const plist = '("fox", ("glove", ("army")))'
+  const array = parse(plist)
+  t.deepEqual(array, ['fox', ['glove', ['army']]])
+})
+
+test('it can parse a nested object', t => {
+  t.plan(1)
+  const plist = '{"one" = {"two" = "three"}}'
+  const object = parse(plist)
+  t.equal(object.one.two, 'three')
+})
