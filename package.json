@@ -1,0 +1,23 @@
+{
+  "name": "nextstep-plist",
+  "version": "0.0.0",
+  "description": "NeXTSTEP plist parser",
+  "main": "index.js",
+  "repository": "git@gitlab.com:chee/nextstep-plist",
+  "author": "chee <chee@snake.dog>",
+  "license": "GPL-3.0",
+  "scripts": {
+    "test": "tape tests.js | faucet",
+    "lint": "standard"
+  },
+  "devDependencies": {
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-node": "^4.2.2",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "faucet": "^0.0.1",
+    "standard": "*",
+    "tape": "^4.6.3"
+  }
+}
