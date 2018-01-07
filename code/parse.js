@@ -24,7 +24,7 @@ const escape = string =>
   string.replace(/\\([\\"])/g, (_, character) => escapes[character])
 
 // TODO add support for binary data
-const tokens = /^\s*(?:([,;=(){}])|"((?:\\"|[^"])*)")/
+const tokens = /^\s*(?:([,;=(){}])|"((?:\\"|[^"])*)"|(\w+))/
 
 const stringAction = {
   [go] () {
@@ -188,11 +188,14 @@ module.exports = function parse (plist) {
       if (!result) {
         break
       }
-      const [capture, token, string] = result
+      const [capture, token, string, noQuoteString] = result
       if (token) {
         action[token][state]()
-      } else {
+      } else if (string !== undefined) {
         value = escape(string)
+        stringAction[state]()
+      } else {
+        value = escape(noQuoteString)
         stringAction[state]()
       }
       plist = plist.slice(capture.length)
