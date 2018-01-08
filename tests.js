@@ -44,6 +44,14 @@ test('it can parse a dictionary', t => {
   t.equal(object.phantasm, 'peter')
 })
 
+test('it can parse an unquoted dictionary value', t => {
+  t.plan(2)
+  const plist = '{"lol" = "hello"; "phantasm" = peter}'
+  const object = parse(plist)
+  t.equal(object.lol, 'hello')
+  t.equal(object.phantasm, 'peter')
+})
+
 test('it can parse a string with escapes', t => {
   t.plan(1)
   const plist = '("she said \\"not me!\\"")'
