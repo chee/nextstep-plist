@@ -5,6 +5,9 @@
   "main": "index.js",
   "repository": "git@gitlab.com:chee/nextstep-plist",
   "author": "chee <chee@snake.dog>",
+  "contributors": [
+    "makepost <makepost@firemail.cc>"
+  ],
   "license": "GPL-3.0",
   "scripts": {
     "test": "tape tests.js | faucet",

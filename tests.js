@@ -64,3 +64,37 @@ test('it can parse a nested object', t => {
   const object = parse(plist)
   t.equal(object.one.two, 'three')
 })
+
+test('it can parse output of `defaults`', t => {
+  t.plan(2)
+
+  const noQuotes = parse(`(
+      {
+      LSHandlerPreferredVersions =         {
+          LSHandlerRoleAll = "-";
+      };
+      LSHandlerRoleAll = "com.apple.dt.xcode";
+      LSHandlerURLScheme = xcdevice;
+    }
+  )`)
+
+  const quotes = parse(`(
+      {
+      "LSHandlerPreferredVersions" =         {
+          "LSHandlerRoleAll" = "-";
+      };
+      "LSHandlerRoleAll" = "com.apple.dt.xcode";
+      "LSHandlerURLScheme" = "xcdevice";
+    }
+  )`)
+
+  t.deepEqual(quotes, noQuotes)
+
+  t.deepEqual(noQuotes, [{
+    LSHandlerPreferredVersions: {
+      LSHandlerRoleAll: '-'
+    },
+    LSHandlerRoleAll: 'com.apple.dt.xcode',
+    LSHandlerURLScheme: 'xcdevice'
+  }])
+})
