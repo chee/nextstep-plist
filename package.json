@@ -1,6 +1,6 @@
 {
   "name": "nextstep-plist",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "NeXTSTEP plist parser",
   "main": "index.js",
   "repository": "git@gitlab.com:chee/nextstep-plist",
