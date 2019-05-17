@@ -1,19 +1,25 @@
-module.exports = function stringify (object) {
+function escape (string) {
+  return string
+    .replace(/\\/g, '\\\\')
+    .replace(/"/g, '\\"')
+}
+
+module.exports = function stringify (thing) {
   let result = ''
-  if (Array.isArray(object)) {
+  if (Array.isArray(thing)) {
     result += '( '
-    result += object.map(stringify).join(', ')
+    result += thing.map(stringify).join(', ')
     result += ' )'
-  } else if (object.constructor === Object) {
+  } else if (thing.constructor === Object) {
     result += '{ '
-    for (const key in object) {
+    for (const key in thing) {
       result += `"${key}" = `
-      result += stringify(object[key])
+      result += stringify(thing[key])
       result += '; '
     }
     result += '}'
   } else {
-    result += `"${object.toString()}"`
+    result += `"${escape(thing.toString())}"`
   }
   return result
 }
