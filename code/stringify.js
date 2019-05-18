@@ -2,6 +2,7 @@ function escape (string) {
   return string
     .replace(/\\/g, '\\\\')
     .replace(/"/g, '\\"')
+    .replace(/\n/g, '\\n')
 }
 
 module.exports = function stringify (thing) {
