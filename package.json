@@ -1,6 +1,6 @@
 {
   "name": "nextstep-plist",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "NeXTSTEP plist parser",
   "main": "index.js",
   "bin": "index.js",
